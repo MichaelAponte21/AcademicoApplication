@@ -31,3 +31,18 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Documentación / entregables ###
+docs/
+
+### Archivos auxiliares de LaTeX ###
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+### macOS ###
+.DS_Store
