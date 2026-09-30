@@ -1,0 +1,12 @@
+services:
+  demo-academico:
+    build: .
+    image: demo-academico:latest
+    container_name: demo-academico
+    ports:
+      - "8080:8080"
+    environment:
+      # Sobrescriben application.yaml (Spring relaxed binding)
+      APP_SEED_ENABLED: "true"
+      APP_SEED_CANTIDAD: "500"
+    restart: unless-stopped

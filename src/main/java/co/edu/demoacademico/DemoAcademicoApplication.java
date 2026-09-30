@@ -11,14 +11,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * en marcha. @SpringBootApplication escanea este paquete y sus
  * subpaquetes y registra automáticamente los componentes:
  *
- *   controller/  -> CAPA DE PRESENTACIÓN   (@RestController)
- *   service/     -> CAPA DE LÓGICA         (@Service)
+ *   controller/  -> CAPA DE PRESENTACIÓN   (@RestController, @RestControllerAdvice)
+ *   dto/         -> OBJETOS DE ENTRADA/SALIDA DE LA API
+ *   api/         -> RESPUESTA ESTÁNDAR      (ApiResponse, ResponseBuilder)
+ *   handler/     -> ADAPTACIÓN DTO <-> ENTITY
+ *   service/     -> CAPA DE LÓGICA          (@Service)
  *   repository/  -> CAPA DE ACCESO A DATOS (@Repository)
  *   model/       -> MODELO / DOMINIO       (@Entity)
- *   exception/   -> MANEJO DE ERRORES      (@RestControllerAdvice)
+ *   exception/   -> EXCEPCIONES DE NEGOCIO  (BusinessException, NotFoundException)
+ *   config/      -> CONFIGURACIÓN           (DataSeeder con Faker)
  *
  * Flujo de una petición:
- *   HTTP -> Controller -> Service -> Repository -> Base de datos
+ *   HTTP -> Controller -> Handler -> Service -> Repository -> Base de datos
  */
 @SpringBootApplication
 public class DemoAcademicoApplication {
