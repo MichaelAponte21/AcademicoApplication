@@ -30,7 +30,7 @@ public class DataSeeder {
             if (!enabled) return;
             if (repo.count() > 0) return;
 
-            Faker faker = new Faker(new Locale("es"));
+            Faker faker = new Faker(Locale.of("es"));
             int creados = 0;
 
             while (creados < cantidad) {

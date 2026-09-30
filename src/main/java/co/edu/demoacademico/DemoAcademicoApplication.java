@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * No pertenece a ninguna de las tres capas: es quien las pone
  * en marcha. @SpringBootApplication escanea este paquete y sus
  * subpaquetes y registra automáticamente los componentes:
- *
+ * <p>
  *   controller/  -> CAPA DE PRESENTACIÓN   (@RestController, @RestControllerAdvice)
  *   dto/         -> OBJETOS DE ENTRADA/SALIDA DE LA API
  *   api/         -> RESPUESTA ESTÁNDAR      (ApiResponse, ResponseBuilder)
@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *   model/       -> MODELO / DOMINIO       (@Entity)
  *   exception/   -> EXCEPCIONES DE NEGOCIO  (BusinessException, NotFoundException)
  *   config/      -> CONFIGURACIÓN           (DataSeeder con Faker)
- *
+ * <p>
  * Flujo de una petición:
  *   HTTP -> Controller -> Handler -> Service -> Repository -> Base de datos
  */

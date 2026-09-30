@@ -13,7 +13,7 @@ import java.util.Optional;
  * Responsabilidad: hablar con la base de datos. Es la ÚNICA
  * capa autorizada a tocar la BD. Spring Data genera la
  * implementación a partir del nombre de los métodos.
- *
+ * <p>
  * NO debe: contener reglas de negocio ni conocer HTTP.
  */
 @Repository

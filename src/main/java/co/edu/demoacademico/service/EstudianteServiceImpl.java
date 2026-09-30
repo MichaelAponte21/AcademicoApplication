@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Aplica las reglas del negocio académico:
  *  - El email de un estudiante es único (al crear y al actualizar).
  *  - Si el estudiante no existe, lanza NotFoundException.
- *
+ * <p>
  * NO conoce HTTP: solo lanza excepciones que el
  * GlobalExceptionHandler traduce a códigos de estado.
  */

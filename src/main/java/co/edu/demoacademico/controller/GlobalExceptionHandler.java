@@ -25,7 +25,7 @@ import java.util.Map;
  * ============================================================
  * Traduce las excepciones a ApiResponse con el código HTTP adecuado,
  * sin exponer nunca un stacktrace al cliente.
- *
+ * <p>
  *   NotFoundException                 -> 404
  *   BusinessException                 -> 400
  *   MethodArgumentNotValidException   -> 400 (detalle por campo)
@@ -58,12 +58,12 @@ public class GlobalExceptionHandler {
 
     /** Red de seguridad: dos peticiones simultáneas con el mismo email chocan con el UNIQUE de la BD. */
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ApiResponse<Object>> handleIntegrity(DataIntegrityViolationException ex) {
+    public ResponseEntity<ApiResponse<Object>> handleIntegrity() {
         return ResponseBuilder.badRequest("Ya existe un estudiante con ese email");
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ApiResponse<Object>> handleUnreadable(HttpMessageNotReadableException ex) {
+    public ResponseEntity<ApiResponse<Object>> handleUnreadable() {
         return ResponseBuilder.badRequest("El cuerpo de la petición no es un JSON válido");
     }
 
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
-    public ResponseEntity<ApiResponse<Object>> handleNoResource(NoResourceFoundException ex) {
+    public ResponseEntity<ApiResponse<Object>> handleNoResource() {
         return ResponseBuilder.notFound("Recurso no encontrado");
     }
 
