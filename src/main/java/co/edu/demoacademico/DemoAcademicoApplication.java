@@ -7,19 +7,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * ============================================================
  * PUNTO DE ARRANQUE DE LA APLICACIÓN
  * ============================================================
- * No pertenece a ninguna de las tres capas: es quien las pone
- * en marcha. @SpringBootApplication escanea este paquete y sus
- * subpaquetes y registra automáticamente los componentes:
+ * No pertenece a ningún módulo: es quien los pone en marcha.
+ * @SpringBootApplication escanea este paquete y sus subpaquetes y
+ * registra automáticamente los componentes.
  * <p>
- *   controller/  -> CAPA DE PRESENTACIÓN   (@RestController, @RestControllerAdvice)
- *   dto/         -> OBJETOS DE ENTRADA/SALIDA DE LA API
- *   api/         -> RESPUESTA ESTÁNDAR      (ApiResponse, ResponseBuilder)
- *   handler/     -> ADAPTACIÓN DTO <-> ENTITY
- *   service/     -> CAPA DE LÓGICA          (@Service)
- *   repository/  -> CAPA DE ACCESO A DATOS (@Repository)
- *   model/       -> MODELO / DOMINIO       (@Entity)
- *   exception/   -> EXCEPCIONES DE NEGOCIO  (BusinessException, NotFoundException)
- *   config/      -> CONFIGURACIÓN           (DataSeeder con Faker)
+ * El proyecto está organizado por módulos (feature-based packaging):
+ * <p>
+ *   common/       -> TRANSVERSAL (api: ApiResponse/ResponseBuilder,
+ *                    exception: Business/NotFound, controller: GlobalExceptionHandler)
+ *   estudiantes/  -> MÓDULO ESTUDIANTES   (port: EstudianteQueryPort)
+ *   programas/    -> MÓDULO PROGRAMAS     (port: ProgramaQueryPort)
+ *   asignaturas/  -> MÓDULO ASIGNATURAS   (port: AsignaturaQueryPort)
+ *   grupos/       -> MÓDULO GRUPOS        (port: GrupoQueryPort)
+ *   matriculas/   -> MÓDULO MATRÍCULAS    (usa los Ports de estudiantes y grupos)
+ *   config/       -> CONFIGURACIÓN        (seeders con Faker)
+ * <p>
+ * Cada módulo tiene sus capas: model, dto, repository, service,
+ * handler y controller. Un módulo NO usa el repositorio de otro:
+ * se comunica con él a través de su Port.
  * <p>
  * Flujo de una petición:
  *   HTTP -> Controller -> Handler -> Service -> Repository -> Base de datos
