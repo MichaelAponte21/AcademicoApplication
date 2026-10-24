@@ -8,5 +8,8 @@ services:
     environment:
       # Sobrescriben application.yaml (Spring relaxed binding)
       APP_SEED_ENABLED: "true"
-      APP_SEED_CANTIDAD: "500"
+      APP_SEED_CANTIDAD_ESTUDIANTES: "50"
+      APP_SEED_CANTIDAD_PROGRAMAS: "3"
+      APP_SEED_CANTIDAD_ASIGNATURAS: "10"
+      APP_SEED_CANTIDAD_GRUPOS: "20"
     restart: unless-stopped

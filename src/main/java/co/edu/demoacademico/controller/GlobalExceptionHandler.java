@@ -56,10 +56,13 @@ public class GlobalExceptionHandler {
                 .body(new ApiResponse<>(false, "Validación fallida", errors));
     }
 
-    /** Red de seguridad: dos peticiones simultáneas con el mismo email chocan con el UNIQUE de la BD. */
+    /**
+     * Red de seguridad para restricciones de la BD que el Service no alcanzó a validar:
+     * UNIQUE (condición de carrera) o FK (eliminar un registro que tiene dependencias).
+     */
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiResponse<Object>> handleIntegrity() {
-        return ResponseBuilder.badRequest("Ya existe un estudiante con ese email");
+        return ResponseBuilder.badRequest("La operación viola una restricción de integridad (registro duplicado o con dependencias)");
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)

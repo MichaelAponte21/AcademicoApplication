@@ -13,7 +13,7 @@ import java.util.Locale;
 /**
  * Siembra estudiantes de prueba con Faker al arrancar, si
  * app.seed.enabled=true y la tabla está vacía.
- * La cantidad se controla con app.seed.cantidad.
+ * La cantidad se controla con app.seed.cantidad-estudiantes.
  */
 @Configuration
 public class DataSeeder {
@@ -21,7 +21,7 @@ public class DataSeeder {
     @Value("${app.seed.enabled:true}")
     private boolean enabled;
 
-    @Value("${app.seed.cantidad:100}")
+    @Value("${app.seed.cantidad-estudiantes:50}")
     private int cantidad;
 
     @Bean
