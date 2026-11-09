@@ -1,15 +1,44 @@
 services:
-  demo-academico:
+
+  app:
     build: .
-    image: demo-academico:latest
-    container_name: demo-academico
+    image: demoacademico
+    container_name: demoacademico-app
     ports:
       - "8080:8080"
     environment:
-      # Sobrescriben application.yaml (Spring relaxed binding)
+      # Sobrescriben application.yaml (Spring relaxed binding): H2 -> MySQL
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demoacademico
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_DATASOURCE_USERNAME: demo
+      SPRING_DATASOURCE_PASSWORD: demo123
       APP_SEED_ENABLED: "true"
       APP_SEED_CANTIDAD_ESTUDIANTES: "50"
       APP_SEED_CANTIDAD_PROGRAMAS: "3"
       APP_SEED_CANTIDAD_ASIGNATURAS: "10"
       APP_SEED_CANTIDAD_GRUPOS: "20"
-    restart: unless-stopped
+    depends_on:
+      db:
+        # Espera a que MySQL acepte conexiones, no solo a que el contenedor arranque
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    container_name: demoacademico-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demoacademico
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: demo123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql_data:

@@ -25,6 +25,8 @@ java -jar target/demo-academico-0.0.1-SNAPSHOT.jar
 docker compose up -d --build
 ```
 
+Levanta dos servicios: `app` (la aplicación, en el puerto 8080) y `db` (MySQL 8.0, expuesto en el puerto 3307 del equipo). Con Compose la aplicación usa MySQL en lugar de H2, y los datos se guardan en el volumen `mysql_data`, por lo que sobreviven a `docker compose down` (se borran solo con `docker compose down -v`).
+
 Para detenerlo:
 
 ```bash

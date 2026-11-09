@@ -45,6 +45,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Driver MySQL (usado cuando la app corre con Docker Compose) -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- Validaciones (recomendado) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
