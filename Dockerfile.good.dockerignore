@@ -1,0 +1,4 @@
+# Contexto de build exclusivo de Dockerfile.good: solo se envía el .jar ya compilado.
+# (El .dockerignore general excluye target/, por eso este Dockerfile necesita el suyo.)
+*
+!target/demo-academico-0.0.1-SNAPSHOT.jar

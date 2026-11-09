@@ -1,0 +1,9 @@
+# Enfoque 2 (Trabajo 04): compilación separada; Docker solo ejecuta el .jar.
+# Requiere compilar antes en el equipo: ./mvnw clean package
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+
+COPY target/demo-academico-0.0.1-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
